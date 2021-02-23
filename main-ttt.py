@@ -8,13 +8,18 @@
 # A way to handle turns (check which turn it is)
 #===================================================================================#
 
-
-
-#====Board=====#
+#======Globals=======#
 
 #creates board variable as a list of 9 items 
 board = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]  
+#Boolean to hold game status
+game_not_over = True   
+#winner
+winner = None
+#current move
+current_player = "X"
 
+#====Board=====#
 #creates function to display board
 def display():
     print()   #adds an empty line for visibility
@@ -27,22 +32,43 @@ def display():
 
 #====State=====#
 
+def check_if_game_over():
+    check_win()
+    check_tie()
+
+def check_win():
+
+def check_tie():   
+
 #----turns-----#
 
-next_turn = 'X'
-def handle_turn():
+
+def handle_turn(current_player):
     square = input("Enter a number between 1 and 9 to make your move: ")
-    board[(int(square)-1)] = next_turn
+    board[(int(square)-1)] = current_player
     display()
 
-
+def handle_turn_change():
 
 #---main function---#
+
+
 def play():
     print()
-    print(f"{next_turn} goes first")
-    display() #display the  initial board
-    handle_turn()
+    display() #display the initial board
+    while game_not_over:
+        handle_turn(current_player)
+
+        check_if_game_over()
+
+        handle_turn_change()
     
+    if winner != None:
+        print(f"{winner} Won!")
+    else:
+        print("Tie game")    
+        
 
 play()
+
+
