@@ -12,7 +12,6 @@
 
 #creates board variable as a list of 9 items 
 board = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]  
-init_board = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]  
 #Boolean to hold game status
 game_not_over = True   
 #winner
@@ -39,13 +38,32 @@ def check_if_game_over(board):
     check_win(board)
     # check_cat(board)
  
+ #loop through the board, return the index of every o and x and compare them to win_conditions
 
 def check_win(board):
+    x_list = []
+    o_list = []
+    for square in range(9):
+        if board[int(square)] == "X": 
+           index = int(square) 
+           x_list.append(index)
+        elif board[int(square)] == "O":
+           indexo = int(square)
+           o_list.append(indexo)
+        else:
+            pass
     for win in win_conditions:
-        
-        result = filter(lambda x: x == "X" or x == "O", win)
-    print(list(result))
-    game_not_over = False     
+        if x_list.sort() == win:
+            winner = "X"
+            print(f"{winner} wins!")
+            game_not_over = False
+        elif o_list.sort() == win:
+            winner = "O"
+            print(f"{winner} wins!")
+            game_not_over = False
+        else:
+            return
+
 
 # def check_cat(board):
     #some logic here
@@ -65,10 +83,12 @@ def handle_turn_change(current_player):
     if current_player == "X":
         current_player = "O"
         print(f"{current_player}'s turn!")
+        print()
         return current_player
     else:
         current_player = "X"  
         print(f"{current_player}'s turn!")
+        print()
         return current_player
 
 #---main function---#
