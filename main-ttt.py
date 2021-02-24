@@ -11,7 +11,8 @@
 #======Globals=======#
 
 #creates board variable as a list of 9 items 
-board = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]    
+board = ["1", "2", "3", "4", "5", "6", "7", "8", "9"] 
+init_board =  ["1", "2", "3", "4", "5", "6", "7", "8", "9"] 
 #current move
 current_player = "X"
 #creates win patterns list to check conditions (will hold the board indeces/squares that need to be the same in order to be considered a win)
@@ -31,9 +32,13 @@ def display():
 #====State=====#
 
 def check_if_game_over(board):
-
     status = check_win(board)
-    return status
+    if not any(filter(lambda x: x in init_board, board)):
+        if status == True:
+            print("Cat's game")
+            return False
+    else:
+        return status
    
 
 def check_win(board):
