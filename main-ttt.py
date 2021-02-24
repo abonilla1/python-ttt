@@ -18,6 +18,8 @@ game_not_over = True
 winner = None
 #current move
 current_player = "X"
+#creates win patterns list to check conditions (will hold the board indeces/squares that need to be the same in order to be considered a win)
+win_conditions = [ [0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]]
 
 #====Board=====#
 #creates function to display board
@@ -32,23 +34,32 @@ def display():
 
 #====State=====#
 
-def check_if_game_over():
-    check_win()
-    check_tie()
+def check_if_game_over(board):
+    check_win(board)
+    check_cat(board)
+ 
 
 def check_win():
+    if 
 
-def check_tie():   
+def check_cat():
+ 
 
 #----turns-----#
 
+#A very simple turn change function that uses one conditional to change the string
 
 def handle_turn(current_player):
-    square = input("Enter a number between 1 and 9 to make your move: ")
-    board[(int(square)-1)] = current_player
-    display()
+    square = input("Enter a number between 1 and 9 to make your move: ") #get user input
+    board[(int(square)-1)] = current_player #update board
+    display() #display updated board
 
-def handle_turn_change():
+def handle_turn_change(current_player):
+    if current_player == "X":
+        current_player = "O"
+        print()
+    else:
+        current_player = "X"  
 
 #---main function---#
 
@@ -58,10 +69,9 @@ def play():
     display() #display the initial board
     while game_not_over:
         handle_turn(current_player)
-
         check_if_game_over()
 
-        handle_turn_change()
+        current_player = handle_turn_change(current_player)
     
     if winner != None:
         print(f"{winner} Won!")
