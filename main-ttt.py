@@ -12,6 +12,7 @@
 
 #creates board variable as a list of 9 items 
 board = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]  
+init_board = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]  
 #Boolean to hold game status
 game_not_over = True   
 #winner
@@ -36,13 +37,19 @@ def display():
 
 def check_if_game_over(board):
     check_win(board)
-    check_cat(board)
+    # check_cat(board)
  
 
-def check_win():
-    if 
+def check_win(board):
+    for win in win_conditions:
+        
+        result = filter(lambda x: x == "X" or x == "O", win)
+    print(list(result))
+    game_not_over = False     
 
-def check_cat():
+# def check_cat(board):
+    #some logic here
+    
  
 
 #----turns-----#
@@ -57,28 +64,27 @@ def handle_turn(current_player):
 def handle_turn_change(current_player):
     if current_player == "X":
         current_player = "O"
-        print()
+        print(f"{current_player}'s turn!")
+        return current_player
     else:
         current_player = "X"  
+        print(f"{current_player}'s turn!")
+        return current_player
 
 #---main function---#
 
 
-def play():
+def play(current_player):
     print()
     display() #display the initial board
+    print()
     while game_not_over:
         handle_turn(current_player)
-        check_if_game_over()
-
+        check_if_game_over(board)
         current_player = handle_turn_change(current_player)
-    
-    if winner != None:
-        print(f"{winner} Won!")
-    else:
-        print("Tie game")    
+     
         
 
-play()
+play(current_player)
 
 
