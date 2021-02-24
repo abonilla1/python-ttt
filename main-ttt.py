@@ -11,15 +11,11 @@
 #======Globals=======#
 
 #creates board variable as a list of 9 items 
-board = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]  
-#Boolean to hold game status
-game_not_over = True   
-#winner
-winner = None
+board = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]    
 #current move
 current_player = "X"
 #creates win patterns list to check conditions (will hold the board indeces/squares that need to be the same in order to be considered a win)
-win_conditions = [ [0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]]
+
 
 #====Board=====#
 #creates function to display board
@@ -35,41 +31,71 @@ def display():
 #====State=====#
 
 def check_if_game_over(board):
-    check_win(board)
-    # check_cat(board)
- 
- #loop through the board, return the index of every o and x and compare them to win_conditions
+
+    status = check_win(board)
+    return status
+   
 
 def check_win(board):
-    x_list = []
-    o_list = []
-    for square in range(9):
-        if board[int(square)] == "X": 
-           index = int(square) 
-           x_list.append(index)
-        elif board[int(square)] == "O":
-           indexo = int(square)
-           o_list.append(indexo)
+    if board[0] == board[1] == board[2]:
+        if board[0] == "X":
+            print("X wins!")
+            return False
         else:
-            pass
-    for win in win_conditions:
-        if x_list.sort() == win:
-            winner = "X"
-            print(f"{winner} wins!")
-            game_not_over = False
-        elif o_list.sort() == win:
-            winner = "O"
-            print(f"{winner} wins!")
-            game_not_over = False
+            print("O wins!")
+            return False
+    elif board[3] == board[4] == board[5]:
+        if board[3] == "X":
+            print("X wins!")
+            return False
         else:
-            return
-
-
-# def check_cat(board):
-    #some logic here
-    
- 
-
+            print("O wins!")
+            return False
+    elif board[6] == board[7] == board[8]:
+        if board[6] == "X":
+            print("X wins!")
+            return False
+        else:
+            print("O wins!")
+            return False
+    elif board[0] == board[3] == board[6]: 
+        if board[6] == "X":
+            print("X wins!")
+            return False
+        else:
+            print("O wins!")
+            return False
+    elif board[1] == board[4] == board[7]:
+        if board[1] == "X":
+            print("X wins!")
+            return False
+        else:
+            print("O wins!")
+            return False      
+    elif board[2] == board[5] == board[8]:
+        if board[2] == "X":
+            print("X wins!")
+            return False
+        else:
+            print("O wins!")
+            return False   
+    elif board[0] == board[4] == board[8]:
+        if board[0] == "X":
+            print("X wins!")
+            return False
+        else:
+            print("O wins!")
+            return False
+    elif board[2] == board[4] == board[6]:
+        if board[6] == "X":
+            print("X wins!")
+            return False
+        else:
+            print("O wins!")
+            return False
+    else:
+        return True
+                
 #----turns-----#
 
 #A very simple turn change function that uses one conditional to change the string
@@ -98,12 +124,11 @@ def play(current_player):
     print()
     display() #display the initial board
     print()
+    game_not_over = True 
     while game_not_over:
         handle_turn(current_player)
-        check_if_game_over(board)
+        game_not_over = check_if_game_over(board)
         current_player = handle_turn_change(current_player)
-     
-        
 
 play(current_player)
 
