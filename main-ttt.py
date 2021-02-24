@@ -133,7 +133,10 @@ def play(current_player):
     while game_not_over:
         handle_turn(current_player)
         game_not_over = check_if_game_over(board)
-        current_player = handle_turn_change(current_player)
+        if game_not_over:
+            current_player = handle_turn_change(current_player)
+        else:
+            pass
 
 play(current_player)
 
